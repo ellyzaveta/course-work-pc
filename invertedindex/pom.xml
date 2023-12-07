@@ -31,6 +31,10 @@
 			<artifactId>lucene-analyzers-common</artifactId>
 			<version>5.5.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 
 	</dependencies>
 
