@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/api/api.iml" filepath="$PROJECT_DIR$/api/api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/course-work-pc.iml" filepath="$PROJECT_DIR$/.idea/course-work-pc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/invertedindex/invertedindex.iml" filepath="$PROJECT_DIR$/invertedindex/invertedindex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/performancecomparison/performancecomparison.iml" filepath="$PROJECT_DIR$/performancecomparison/performancecomparison.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
+    </modules>
+  </component>
+</project>

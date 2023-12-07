@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="invertedindex" />
+        <module name="server" />
+        <module name="client" />
+        <module name="performancecomparison" />
+        <module name="api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api" target="17" />
+      <module name="client" target="17" />
+      <module name="course-work-pc" target="1.5" />
+      <module name="invertedindex" target="17" />
+      <module name="performancecomparison" target="17" />
+      <module name="server" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api" options="-parameters" />
+      <module name="client" options="-parameters" />
+      <module name="invertedindex" options="-parameters" />
+      <module name="performancecomparison" options="-parameters" />
+      <module name="server" options="-parameters" />
+    </option>
+  </component>
+</project>
