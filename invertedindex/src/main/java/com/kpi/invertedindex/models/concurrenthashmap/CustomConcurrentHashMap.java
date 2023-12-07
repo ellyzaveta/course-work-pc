@@ -74,6 +74,11 @@ public class CustomConcurrentHashMap<K, V> {
         table[index] = new Entry<>(hash, key, value, first);
     }
 
+    public V getOrDefault(K key, V defaultValue) {
+        V value = get(key);
+        return value != null ? value : defaultValue;
+    }
+
     public V get(Object key) {
         validateKey(key);
         int hash = hash(key);
