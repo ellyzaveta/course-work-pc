@@ -1,13 +1,17 @@
 package com.kpi.server;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.kpi.server.configuration.SpringConfiguration;
+import com.kpi.server.threads.MainThread;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
+
 public class ServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ServerApplication.class, args);
-	}
 
+		var context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+
+		MainThread mainThread = context.getBean(MainThread.class);
+		mainThread.run();
+	}
 }
