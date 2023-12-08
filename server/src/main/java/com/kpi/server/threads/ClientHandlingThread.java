@@ -23,6 +23,9 @@ public class ClientHandlingThread implements Runnable {
 
     @Override
     public void run() {
+        Response firstResponse = new ServerReadyResponse();
+        socketWrapper.send(firstResponse);
+
         while(true) {
             Request request = socketWrapper.read(Request.class);
 
@@ -42,6 +45,8 @@ public class ClientHandlingThread implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println("finished");
     }
 
     private Optional<Response> handleRequest(Request request) {

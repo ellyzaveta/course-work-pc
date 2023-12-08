@@ -1,12 +1,7 @@
 package com.kpi.client.services;
 
-import com.kpi.api.dto.requests.CurrentProgressRequest;
-import com.kpi.api.dto.requests.Request;
-import com.kpi.api.dto.requests.ThreadsNumberRequest;
-import com.kpi.api.dto.responses.CurrentProgressResponse;
-import com.kpi.api.dto.responses.DocumentsSetResponse;
-import com.kpi.api.dto.responses.Response;
-import com.kpi.api.dto.responses.ThreadsNumberResponse;
+import com.kpi.api.dto.requests.*;
+import com.kpi.api.dto.responses.*;
 import com.kpi.api.sockets.SocketWrapper;
 import com.kpi.client.utils.Console;
 
@@ -15,7 +10,39 @@ import java.util.Optional;
 
 public class ServerResponseHandlingService {
 
-    public static void handleServerResponse(SocketWrapper socketWrapper) {
+    public static void start(SocketWrapper socketWrapper) {
+        if(isServerReady(socketWrapper)) {
+            while (true) {
+                String keyword = Console.printOptions();
+                if (!keyword.equals("e")) {
+                    handleKeyword(keyword, socketWrapper);
+                } else {
+                    handleExit(socketWrapper);
+                }
+            }
+        }
+    }
+
+    private static boolean isServerReady(SocketWrapper socketWrapper) {
+        Response response = socketWrapper.read(Response.class);
+        return response instanceof ServerReadyResponse;
+    }
+
+    private static void handleKeyword(String keyword, SocketWrapper socketWrapper) {
+
+        DocumentsSetRequest setOfDocsRequest = new DocumentsSetRequest();
+        setOfDocsRequest.setKeyword(keyword);
+        socketWrapper.send(setOfDocsRequest);
+
+        handleServerResponses(socketWrapper);
+    }
+
+    private static void handleExit(SocketWrapper socketWrapper) {
+        socketWrapper.send(new ExitRequest());
+        System.exit(0);
+    }
+
+    private static void handleServerResponses(SocketWrapper socketWrapper) {
 
         while(true) {
             Response response = socketWrapper.read(Response.class);

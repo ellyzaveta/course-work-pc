@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Console {
 
     public static int printThreadsNumberRequest() {
-        System.out.println("\nIndex hasn't been built yet. Enter number of threads: ");
+        System.out.println("\n\uD83D\uDD22 ️Index hasn't been built yet. Enter number of threads to build inverted index: ");
 
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
@@ -97,14 +97,18 @@ public class Console {
     }
 
     public static void printGreeting() {
-        System.out.println("\uD83D\uDD0E System for getting set of documents, associated with keyword.");
+        System.out.println("\n\uD83D\uDD0E SYSTEM FOR GETTING SET OF DOCUMENTS, ASSOCIATED WITH KEYWORD");
     }
 
     public static String printOptions() {
 
-        System.out.println("\nEnter a keyword to get a list of related documents (e - exit): ");
+        System.out.println("\n\uD83D\uDD11 Enter a keyword to get a list of related documents (e - exit): ");
 
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
+    }
+
+    public static void printWaitMessage() {
+        System.out.println("\n\t\t\uD83D\uDD57 When the server is ready, it will request you a keyword.");
     }
 }
