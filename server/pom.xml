@@ -30,6 +30,11 @@
 			<groupId>com.kpi</groupId>
 			<artifactId>invertedindex</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.kpi</groupId>
+			<artifactId>api</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
