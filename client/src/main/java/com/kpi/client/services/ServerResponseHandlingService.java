@@ -88,6 +88,8 @@ public class ServerResponseHandlingService {
         ThreadsNumberRequest request = new ThreadsNumberRequest();
         request.setThreadsNumber(numOfThreads);
 
+        Console.printSpace();
+
         return request;
     }
 }

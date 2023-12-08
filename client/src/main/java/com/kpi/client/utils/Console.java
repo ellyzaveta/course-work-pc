@@ -9,6 +9,7 @@ public class Console {
         System.out.println("\n\uD83D\uDD22 ️Index hasn't been built yet. Enter number of threads to build inverted index: ");
 
         Scanner scanner = new Scanner(System.in);
+
         return scanner.nextInt();
     }
 
@@ -76,16 +77,20 @@ public class Console {
 
     }
 
+    public static void printSpace() {
+        System.out.println();
+    }
+
     public static void printResult(String keyword, List<String> result) {
         if(result != null && !result.isEmpty()) {
             System.out.print("\033[H\033[2J");
             System.out.flush();
 
-            System.out.println("\nSet of documents, associated with " + keyword + " keyword:\n");
+            System.out.println("\n\uD83D\uDFE2 Set of documents, associated with " + keyword + " keyword:\n");
 
             result.forEach(element -> System.out.println("\uD83D\uDCC2 " + element));
         } else {
-            System.out.println("\nNo documents, associated with " + keyword + " keyword.\n");
+            System.out.println("\n\uD83D\uDD34 No documents, associated with " + keyword + " keyword.\n");
         }
     }
 
