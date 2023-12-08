@@ -108,5 +108,9 @@ public class InvertedIndexService {
         return progressTracker.isFinished();
     }
 
+    public synchronized double getProgress() {
+        return progressTracker.getProgress();
+    }
+
 }
 
