@@ -1,18 +1,16 @@
 package com.kpi.invertedindex.services;
 
+import com.kpi.invertedindex.models.InvertedIndex;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 class InvertedIndexServiceTest {
 
-    @Autowired
-    private InvertedIndexService invertedIndexService;
+    private final InvertedIndex invertedIndex = new InvertedIndex();
+    private final InvertedIndexService invertedIndexService = new InvertedIndexService("/Users/lizakhmyz/Desktop/data for unit testing", invertedIndex);
 
     @Test
     public void testIndexAndGet() {

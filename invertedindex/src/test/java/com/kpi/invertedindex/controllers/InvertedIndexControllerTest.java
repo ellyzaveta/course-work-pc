@@ -3,7 +3,6 @@ package com.kpi.invertedindex.controllers;
 import com.kpi.invertedindex.services.InvertedIndexService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +13,6 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
 class InvertedIndexControllerTest {
 
     private InvertedIndexService invertedIndexService;
