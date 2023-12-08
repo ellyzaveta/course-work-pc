@@ -26,6 +26,8 @@ public class ClientHandlingThread implements Runnable {
         Response firstResponse = new ServerReadyResponse();
         socketWrapper.send(firstResponse);
 
+        log.info("Started handling requests on port " + socketWrapper.getPort());
+
         while(true) {
             Request request = socketWrapper.read(Request.class);
 
@@ -45,8 +47,6 @@ public class ClientHandlingThread implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.println("finished");
     }
 
     private Optional<Response> handleRequest(Request request) {
@@ -103,6 +103,7 @@ public class ClientHandlingThread implements Runnable {
     private DocumentsSetResponse handleSetOfDocsResponse() {
 
         DocumentsSetResponse setOfDocsResponse = new DocumentsSetResponse();
+        setOfDocsResponse.setKeyword(keyword);
         setOfDocsResponse.setDocs(getResult(keyword));
 
         keyword = null;
