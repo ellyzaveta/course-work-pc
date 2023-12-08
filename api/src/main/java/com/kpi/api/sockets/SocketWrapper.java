@@ -66,4 +66,8 @@ public class SocketWrapper implements AutoCloseable {
         }
     }
 
+    public int getPort() {
+        return socket.getPort();
+    }
+
 }
