@@ -1,9 +1,14 @@
 package com.kpi.client;
 
+import com.kpi.client.configuration.SpringConfiguration;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 public class ClientApplication {
 
 	public static void main(String[] args) {
-		MainThread mainThread = new MainThread();
+		var context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+
+		MainThread mainThread = context.getBean(MainThread.class);
 		mainThread.run();
 	}
 
