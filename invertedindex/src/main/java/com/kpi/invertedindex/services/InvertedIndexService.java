@@ -30,6 +30,8 @@ public class InvertedIndexService {
 
     private final List<Path> pathsToIndex;
 
+    private ExecutorService executorService;
+
     public InvertedIndexService(@Value("${directory.path}") String path, InvertedIndex invertedIndex) {
 
         this.invertedIndex = invertedIndex;
@@ -49,7 +51,7 @@ public class InvertedIndexService {
 
     public void index(int threadsNumber) {
 
-        ExecutorService executorService = Executors.newFixedThreadPool(threadsNumber);
+        executorService = Executors.newFixedThreadPool(threadsNumber);
 
         int filesPerThread = (int) Math.ceil((double) pathsToIndex.size() / threadsNumber);
 
@@ -105,7 +107,7 @@ public class InvertedIndexService {
     }
 
     public boolean isIndexed() {
-        return progressTracker.isFinished();
+        return executorService != null && executorService.isShutdown();
     }
 
     public synchronized double getProgress() {
