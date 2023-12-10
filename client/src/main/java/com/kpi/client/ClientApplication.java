@@ -1,6 +1,7 @@
 package com.kpi.client;
 
 import com.kpi.client.configuration.SpringConfiguration;
+import com.kpi.client.threads.MainThread;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class ClientApplication {

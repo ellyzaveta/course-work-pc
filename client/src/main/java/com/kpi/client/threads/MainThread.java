@@ -1,4 +1,4 @@
-package com.kpi.client;
+package com.kpi.client.threads;
 
 import com.kpi.api.sockets.SocketWrapper;
 import com.kpi.client.services.ServerResponsesHandlingService;
