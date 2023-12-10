@@ -31,7 +31,7 @@ public class MainThread {
                 optionalSocketWrapper.ifPresent(clientSocketWrapper -> executorService.execute(new ClientHandlingThread(indexProcessingThread, clientSocketWrapper)));
             }
         } catch (Exception e) {
-            System.out.println("Error connecting to client socket.");
+            log.info("Error connecting to client socket.");
         }
     }
 
