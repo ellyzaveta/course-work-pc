@@ -1,8 +1,8 @@
 package com.kpi.client;
 
 import com.kpi.api.sockets.SocketWrapper;
-import com.kpi.client.services.ServerResponseHandlingService;
-import com.kpi.client.utils.Console;
+import com.kpi.client.services.ServerResponsesHandlingService;
+import com.kpi.client.ui.Console;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
@@ -26,7 +26,7 @@ public class MainThread {
         Console.printGreeting();
         Console.printWaitMessage();
 
-        ServerResponseHandlingService.start(socketWrapper);
+        ServerResponsesHandlingService.handleServerResponses(socketWrapper);
     }
 
 }

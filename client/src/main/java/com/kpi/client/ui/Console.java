@@ -1,4 +1,4 @@
-package com.kpi.client.utils;
+package com.kpi.client.ui;
 
 import java.util.List;
 import java.util.Scanner;
@@ -62,18 +62,11 @@ public class Console {
         }
     }
 
-    public static String printKeywordRequest() {
-        System.out.println("\nEnter keyword: ");
-
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
-    }
-
     public static void printGreeting() {
         System.out.println("\n\uD83D\uDD0E SYSTEM FOR GETTING SET OF DOCUMENTS, ASSOCIATED WITH KEYWORD");
     }
 
-    public static String printOptions() {
+    public static String readKeyword() {
 
         System.out.println("\n\uD83D\uDD11 Enter a keyword to get a list of related documents (e - exit): ");
 
