@@ -38,43 +38,11 @@ public class Console {
         progressBar.append("] ");
         progressBar.append((int) progress).append(" %");
 
-        progressBar.append("\r");
+        progressBar.append(progress == 100 ? "\n" : "\r");
 
         System.out.print(progressBar);
 
         System.out.flush();
-
-    }
-
-    public static void showFinalProgressBar() {
-
-        final int barWidth = 70;
-
-        double progress = 100;
-
-        int pos = (int) (barWidth * progress / 100.0);
-
-        StringBuilder progressBar = new StringBuilder(barWidth + 10);
-
-        progressBar.append("[");
-
-        for (int i = 0; i < barWidth; i++) {
-            if (i < pos) {
-                progressBar.append("―");
-            } else if (i == pos) {
-                progressBar.append("⟶");
-            } else {
-                progressBar.append(" ");
-            }
-        }
-
-        progressBar.append("] ");
-        progressBar.append((int) progress).append(" %");
-
-        progressBar.append("\n");
-
-        System.out.print(progressBar);
-
     }
 
     public static void printSpace() {

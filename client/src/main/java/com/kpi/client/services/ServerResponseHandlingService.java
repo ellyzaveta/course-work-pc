@@ -68,7 +68,7 @@ public class ServerResponseHandlingService {
     }
 
     private static Request handleSetOfDocsResponse(DocumentsSetResponse setOfDocsResponse) {
-        Console.showFinalProgressBar();
+        Console.showProgressBar(100);
         Console.printResult(setOfDocsResponse.getKeyword(), setOfDocsResponse.getDocs());
         List<String> result = setOfDocsResponse.getDocs();
         return null;
@@ -77,7 +77,7 @@ public class ServerResponseHandlingService {
     private static Request handleCurrentProgressResponse(CurrentProgressResponse currentProgressResponse) {
         double progress = currentProgressResponse.getProgress();
 
-        Console.showProgressBar(progress);
+        if(progress != 100) Console.showProgressBar(progress);
 
         return new CurrentProgressRequest();
     }
