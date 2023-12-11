@@ -38,6 +38,9 @@ public class ClientHandlingThread implements Runnable {
 
             if(optionalResponse.isPresent()) {
                 Response response = optionalResponse.get();
+                if(!(response instanceof CurrentProgressResponse)) {
+                    log.info("Response to client on port " + socketWrapper.getPort() + " " + response);
+                }
                 if (response instanceof ExitResponse) {
                     break;
                 } else {

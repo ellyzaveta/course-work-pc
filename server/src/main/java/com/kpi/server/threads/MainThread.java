@@ -24,7 +24,7 @@ public class MainThread {
     private final ProcessingThread indexProcessingThread;
 
     public void run() {
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
         try (ServerSocketWrapper serverSocketWrapper = new ServerSocketWrapper(serverPort)) {
             while (true) {
                 Optional<SocketWrapper> optionalSocketWrapper = serverSocketWrapper.connect();
