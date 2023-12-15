@@ -28,7 +28,7 @@ public class ClientHandlingThread implements Runnable {
         log.info("Started handling requests from client on port " + socketWrapper.getPort());
 
         while(true) {
-            Request request = socketWrapper.read(Request.class);
+            Request request = socketWrapper.read();
 
             if(!(request instanceof CurrentProgressRequest)) {
                 log.info("Request from client on port " + socketWrapper.getPort() + " " + request);

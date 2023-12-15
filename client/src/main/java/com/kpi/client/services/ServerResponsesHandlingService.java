@@ -21,7 +21,7 @@ public class ServerResponsesHandlingService {
     }
 
     private static boolean isServerReady(SocketWrapper socketWrapper) {
-        Response response = socketWrapper.read(Response.class);
+        Response response = socketWrapper.read();
         return response instanceof ServerReadyResponse;
     }
 
@@ -49,7 +49,7 @@ public class ServerResponsesHandlingService {
     private static void processServerResponses(SocketWrapper socketWrapper) {
 
         while(true) {
-            Response response = socketWrapper.read(Response.class);
+            Response response = socketWrapper.read();
             Optional<Request> request = ServerResponseHandler.handleServerResponse(response);
             if (request.isPresent()) {
                 socketWrapper.send(request.get());

@@ -34,7 +34,11 @@ public class SocketWrapper implements AutoCloseable {
         }
     }
 
-    public <T> T read(Class<T> requestClass) {
+    public int getPort() {
+        return socket.getPort();
+    }
+
+    public <T> T read() {
         try {
             return (T) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
@@ -64,10 +68,6 @@ public class SocketWrapper implements AutoCloseable {
         } if (socket != null) {
             socket.close();
         }
-    }
-
-    public int getPort() {
-        return socket.getPort();
     }
 
 }
