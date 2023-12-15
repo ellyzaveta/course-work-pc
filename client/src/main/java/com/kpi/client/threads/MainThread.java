@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class MainThread {
 
-    @Value("${server.host}")
+    @Value("${host.name}")
     private String serverHost;
 
     @Value("${server.port}")

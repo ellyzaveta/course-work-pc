@@ -32,7 +32,7 @@ public class InvertedIndexService {
 
     private ExecutorService executorService;
 
-    public InvertedIndexService(@Value("${directory.path}") String path, InvertedIndex invertedIndex) {
+    public InvertedIndexService(@Value("${data.path}") String path, InvertedIndex invertedIndex) {
 
         this.invertedIndex = invertedIndex;
 
