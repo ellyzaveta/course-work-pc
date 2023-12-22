@@ -8,21 +8,23 @@ public class CustomConcurrentHashMap<K, V> {
 
     private final Segment[] segments;
     private final Entry<K, V>[] table;
+    private final int SEGMENTS_NUMBER = 32;
 
     public CustomConcurrentHashMap(int capacity) {
-
         table = (Entry<K, V>[]) new Entry[capacity];
 
-        segments = new Segment[32];
+        segments = new Segment[SEGMENTS_NUMBER];
+        initSegments();
+    }
 
+    private void initSegments() {
         for (int i = 0; i < segments.length; i++) {
             segments[i] = new Segment();
         }
     }
 
     private static int hash(Object key) {
-        int h = key.hashCode();
-        return (h << 7) - h + (h >>> 9) + (h >>> 17);
+        return key.hashCode();
     }
 
     private int getBucketIndex(int hash) {
@@ -30,7 +32,11 @@ public class CustomConcurrentHashMap<K, V> {
     }
 
     private Segment synchronizedSegment(int hash) {
-        return segments[hash & 0x1F];
+        return segments[getSegmentIndex(hash)];
+    }
+
+    private int getSegmentIndex(int hash) {
+        return hash & (segments.length - 1);
     }
 
     private void validateKeyAndValue(K key, V value) {
@@ -52,25 +58,25 @@ public class CustomConcurrentHashMap<K, V> {
     }
 
     public void put(K key, V value) {
-
         validateKeyAndValue(key, value);
 
         int hash = hash(key);
-
         synchronized (synchronizedSegment(hash)) {
-            int index = getBucketIndex(hash);
-            updateOrAddEntry(key, value, hash, index);
+            updateOrAddEntry(key, value, hash);
         }
     }
 
-    private void updateOrAddEntry(K key, V value, int hash, int index) {
+    private void updateOrAddEntry(K key, V value, int hash) {
+        int index = getBucketIndex(hash);
         Entry<K, V> first = table[index];
+
         for (Entry<K, V> e = first; e != null; e = e.next) {
             if (isKeyEquals(key, hash, e)) {
                 e.value = value;
                 return;
             }
         }
+
         table[index] = new Entry<>(hash, key, value, first);
     }
 
@@ -102,19 +108,23 @@ public class CustomConcurrentHashMap<K, V> {
 
         synchronized (synchronizedSegment(hash)) {
             V existingValue = get(key);
-
             if (existingValue != null) {
                 return existingValue;
             }
 
             V newValue = mappingFunction.apply(key);
-
             if (newValue != null) {
-                put(key, newValue);
+                addEntry(key, newValue, hash);
             }
 
             return newValue;
         }
+    }
+
+    private void addEntry(K key, V value, int hash) {
+        int index = getBucketIndex(hash);
+        Entry<K, V> first = table[index];
+        table[index] = new Entry<>(hash, key, value, first);
     }
 
 }
