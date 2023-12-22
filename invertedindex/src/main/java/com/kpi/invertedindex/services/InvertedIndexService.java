@@ -25,23 +25,18 @@ public class InvertedIndexService {
 
     @Autowired
     private final InvertedIndex invertedIndex;
-
     private final ProgressTracker progressTracker;
-
     private final List<Path> pathsToIndex;
-
     private ExecutorService executorService;
 
     public InvertedIndexService(@Value("${data.path}") String path, InvertedIndex invertedIndex) {
 
         this.invertedIndex = invertedIndex;
-
         try {
             this.pathsToIndex = FileHandler.getAllTxtFilesPaths(path);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         progressTracker = new ProgressTracker(FileHandler.getFileListSize(pathsToIndex));
     }
 
@@ -66,7 +61,6 @@ public class InvertedIndexService {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     private void indexBatchOfFiles(int batchIndex, int filesPerThread) {
@@ -94,7 +88,6 @@ public class InvertedIndexService {
     }
 
     private void indexLine(String line, Path path) {
-
         List<String> tokens = getTokens(line);
         String fullFilePath = getStringPath(path);
 
