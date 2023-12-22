@@ -103,7 +103,7 @@ public class InvertedIndexService {
         return executorService != null && executorService.isShutdown();
     }
 
-    public synchronized double getProgress() {
+    public double getProgress() {
         return progressTracker.getProgress();
     }
 

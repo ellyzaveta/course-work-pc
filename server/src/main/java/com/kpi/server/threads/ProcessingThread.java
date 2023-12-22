@@ -12,7 +12,6 @@ public class ProcessingThread {
 
     @Autowired
     InvertedIndexController invertedIndexController;
-
     private CompletableFuture<Void> taskProcessingThread;
 
     public synchronized void index(int threadsNumber) {
@@ -22,11 +21,12 @@ public class ProcessingThread {
         });
     }
 
-    public synchronized List<String> get(String keyword) {
-        if(taskProcessingThread.isDone()) {
-            return invertedIndexController.get(keyword);
-        }
-        return null;
+    public List<String> get(String keyword) {
+        return invertedIndexController.get(keyword);
+    }
+
+    public double getProgress() {
+        return invertedIndexController.getProgress();
     }
 
     public synchronized boolean isInProgress() {
@@ -35,9 +35,5 @@ public class ProcessingThread {
 
     public synchronized boolean isIndexed() {
         return taskProcessingThread != null && taskProcessingThread.isDone();
-    }
-
-    public synchronized double getProgress() {
-        return invertedIndexController.getProgress();
     }
 }

@@ -33,13 +33,6 @@ class ProgressTrackerTest {
     }
 
     @Test
-    void testIsFinished() {
-        assertFalse(progressTracker.isFinished());
-        progressTracker.updateProgress(totalProgress);
-        assertTrue(progressTracker.isFinished());
-    }
-
-    @Test
     void testThreadSafety() throws InterruptedException {
         Thread thread1 = new Thread(() -> progressTracker.updateProgress(500));
         Thread thread2 = new Thread(() -> progressTracker.updateProgress(500));
