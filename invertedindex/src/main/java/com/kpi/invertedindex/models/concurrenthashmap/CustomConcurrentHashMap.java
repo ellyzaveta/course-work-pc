@@ -39,9 +39,9 @@ public class CustomConcurrentHashMap<K, V> {
         return hash & (segments.length - 1);
     }
 
-    private void validateKeyAndValue(K key, V value) {
-        if (key == null || value == null) {
-            throw new IllegalArgumentException("Key or value cannot be null");
+    private void validateValue(V value) {
+        if (value == null) {
+            throw new IllegalArgumentException("Value cannot be null");
         }
     }
 
@@ -58,7 +58,8 @@ public class CustomConcurrentHashMap<K, V> {
     }
 
     public void put(K key, V value) {
-        validateKeyAndValue(key, value);
+        validateKey(key);
+        validateValue(value);
 
         int hash = hash(key);
         synchronized (synchronizedSegment(hash)) {
@@ -114,14 +115,14 @@ public class CustomConcurrentHashMap<K, V> {
 
             V newValue = mappingFunction.apply(key);
             if (newValue != null) {
-                addEntry(key, newValue, hash);
+                addNewEntry(key, newValue, hash);
             }
 
             return newValue;
         }
     }
 
-    private void addEntry(K key, V value, int hash) {
+    private void addNewEntry(K key, V value, int hash) {
         int index = getBucketIndex(hash);
         Entry<K, V> first = table[index];
         table[index] = new Entry<>(hash, key, value, first);
