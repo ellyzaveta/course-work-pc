@@ -15,10 +15,12 @@ public class ProcessingThread {
     private CompletableFuture<Void> taskProcessingThread;
 
     public synchronized void index(int threadsNumber) {
-        taskProcessingThread = CompletableFuture.supplyAsync(() -> {
-            invertedIndexController.index(threadsNumber);
-            return null;
-        });
+        if(!isIndexed() && !isInProgress()) {
+            taskProcessingThread = CompletableFuture.supplyAsync(() -> {
+                invertedIndexController.index(threadsNumber);
+                return null;
+            });
+        }
     }
 
     public List<String> get(String keyword) {
@@ -29,11 +31,11 @@ public class ProcessingThread {
         return invertedIndexController.getProgress();
     }
 
-    public synchronized boolean isInProgress() {
+    public boolean isInProgress() {
         return taskProcessingThread != null && !taskProcessingThread.isDone();
     }
 
-    public synchronized boolean isIndexed() {
+    public boolean isIndexed() {
         return taskProcessingThread != null && taskProcessingThread.isDone();
     }
 }
