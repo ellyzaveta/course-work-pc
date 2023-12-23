@@ -9,7 +9,7 @@ import static org.apache.lucene.analysis.standard.ClassicAnalyzer.STOP_WORDS_SET
 
 public class DataPreprocessor {
 
-    public static final String SPLIT_SYMBOLS = "[.,\\s]+";
+    public static final String SPLIT_SYMBOLS = "[!:;().,\\s]+";
     public static final String PUNCTUATION_SYMBOLS = "^" + SPLIT_SYMBOLS;
 
     public static List<String> getTokens(String input) {
